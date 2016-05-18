@@ -76,6 +76,7 @@
 	==> default: Rsyncing folder: /data/vagrant/temp/ => /home/vagrant/sync
 
 이후 실행된 VM에 다음과 같이 접속할 수 있습니다.(반드시 아까 생성한 디렉토리에서 실행)
+
 	➜  temp vagrant ssh
 	-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
 	[vagrant@localhost ~]$
