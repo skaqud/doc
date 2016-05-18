@@ -4,13 +4,13 @@
 
 다음과 같은 명령을 실행하여 로컬 환경에 linux를 설치
 
-로컬 환경에 vagrant 디렉토리 생성(이름은 상관 없습니다.)
+로컬 환경에 vagrant 디렉토리 생성, 디렉토리 이름은 상관 없으나(마음대로 생성 가능), 실행시키는 명령의 기본 디렉토리가 되므로, 앞으로 실행할 명령은 항상 다음 디렉토리 바로 아래에서 수행해야 합니다.
 
 	mkdir ~/vagrant/centos
 
 해당 디렉토리 안에서 다음과 같이 실행하면 Vagrantfile이 생성됨
 
-	# ubuntu vagrant init
+	#vagrant init
 	A `Vagrantfile` has been placed in this directory. You are now
 	ready to `vagrant up` your first virtual environment! Please read
 	the comments in the Vagrantfile as well as documentation on
@@ -32,7 +32,7 @@
 
 이후 위에서 생성된 Vagrantfile의 다음 부분을 위에서 받은 box이름으로 수정합니다.
 	
-	(중간의 다음 부분을)
+	(편집기로 Vagrantfile을 열어 중간의 다음 부분을)
 	config.vm.box = "base"
 	(다음과 같이 수정-설치 원하는 OS로)
 	config.vm.box = "centos/7"
