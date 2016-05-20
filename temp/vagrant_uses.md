@@ -24,9 +24,9 @@
 	centos의 경우(선택하라고 나올 경우 virtualbox 버전 선택)
 	#vagrant box add centos/7
 
-다음과 같이 살행시 다음처럼 나오면 성공
+다음과 같이 실행시 다음처럼 나오면 성공
 
-	➜  temp vagrant box list
+	# vagrant box list
 	centos/7        (virtualbox, 1603.01)
 	ubuntu/trusty64 (virtualbox, 20160516.0.0)
 
