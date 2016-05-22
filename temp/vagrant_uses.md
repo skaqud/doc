@@ -4,13 +4,13 @@
 
 다음과 같은 명령을 실행하여 로컬 환경에 linux를 설치
 
-로컬 환경에 vagrant 디렉토리 생성(이름은 상관 없습니다.)
+로컬 환경에 vagrant 디렉토리 생성, 디렉토리 이름은 상관 없으나(마음대로 생성 가능), 실행시키는 명령의 기본 디렉토리가 되므로, 앞으로 실행할 명령은 항상 다음 디렉토리 바로 아래에서 수행해야 합니다.
 
 	mkdir ~/vagrant/centos
 
 해당 디렉토리 안에서 다음과 같이 실행하면 Vagrantfile이 생성됨
 
-	# ubuntu vagrant init
+	#vagrant init
 	A `Vagrantfile` has been placed in this directory. You are now
 	ready to `vagrant up` your first virtual environment! Please read
 	the comments in the Vagrantfile as well as documentation on
@@ -24,15 +24,15 @@
 	centos의 경우(선택하라고 나올 경우 virtualbox 버전 선택)
 	#vagrant box add centos/7
 
-다음과 같이 살행시 다음처럼 나오면 성공
+다음과 같이 실행시 다음처럼 나오면 성공
 
-	➜  temp vagrant box list
+	# vagrant box list
 	centos/7        (virtualbox, 1603.01)
 	ubuntu/trusty64 (virtualbox, 20160516.0.0)
 
 이후 위에서 생성된 Vagrantfile의 다음 부분을 위에서 받은 box이름으로 수정합니다.
 	
-	(중간의 다음 부분을)
+	(편집기로 Vagrantfile을 열어 중간의 다음 부분을)
 	config.vm.box = "base"
 	(다음과 같이 수정-설치 원하는 OS로)
 	config.vm.box = "centos/7"
@@ -76,6 +76,7 @@
 	==> default: Rsyncing folder: /data/vagrant/temp/ => /home/vagrant/sync
 
 이후 실행된 VM에 다음과 같이 접속할 수 있습니다.(반드시 아까 생성한 디렉토리에서 실행)
+
 	➜  temp vagrant ssh
 	-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
 	[vagrant@localhost ~]$
@@ -85,6 +86,7 @@ Vagrant 소개
 - http://taewan.kim/blog/2016/02/06/vagrant_intro/
 - http://ppiazi.tistory.com/entry/Vagrant-VirtualBox-가상머신-관리-도구-소개
 - http://bcho.tistory.com/806
+
 Vagrant 설치 및 사용법 관련 - 
 - http://manseok.blogspot.kr/2014/09/vagrant.html
 - http://rangken.github.io/blog/2015/vagrant-1/
