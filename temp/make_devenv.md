@@ -46,6 +46,8 @@
 
 root 비번을 적당히 설정한 뒤 DB상태를 확인합니다.
 
+위에서 생성한 계정(testu)로도 로그인 되는지 확인합니다.
+
 
 ### 2) WAS 설치
 
@@ -64,7 +66,10 @@ root 비번을 적당히 설정한 뒤 DB상태를 확인합니다.
 	OpenJDK Runtime Environment (rhel-2.6.6.1.el7_2-x86_64 u101-b00)
 	OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
 
-tomcat을 다운로드 합니다. 다운로드 주소는 이곳에서 확인, tomcat의 경우 binary를 다운로드 받은 뒤 특정 디렉토리에 설치합니다. webapps 들이 deploy되어야 하기에 일반적으로 관리될 수 있는 디렉토리에 위치시키는 게 좋을 것 같습니다.
+위에서 생성한 계정으로 로그인한 후 tomcat을 다운로드 합니다. 다운로드 주소는 이곳에서 확인, tomcat의 경우 binary를 다운로드 받은 뒤 특정 디렉토리에 설치합니다. webapps 들이 deploy되어야 하기에 일반적으로 관리될 수 있는 디렉토리에 위치시키는 게 좋을 것 같습니다.
+
+	#계정 변경(testu)
+	su - testu
 
 	mkdir app
 	cd app
@@ -116,13 +121,34 @@ curl명령 혹은 브라우저를 통해 실행을 확인합니다.
 
 ### 4) WAR 준비 및 테스트
 
+이제까지 진행된 내용들은 vm에서 작업되었으나, 다음 내용은 어느 환경에서 수행하던지 상관이 없습니다. 최종 테스트시에는 이 과정을 통해 생성된 war파일만을 사용합니다. 이클립스 툴을 사용해야 하므로 보통은 VM말고 host pc에서 수행합니다.
+
 다운로드 페이지(https://eclipse.org/downloads/)에서 
 
 Java EE Developers verison을 다운로드 한 뒤 원하는 곳에 압축을 풀고 실행합니다.
 
+이클립스가 정상적으로 실행되는지를 확인한 뒤, spring-petclinic프로젝트(https://github.com/spring-projects/spring-petclinic)를 다운로드 받아 import 합니다.
+
+import 방법에는 여러가지가 있습니다.
+- 이클립스 상에서 git플러그인(egit?)을 사용하여 import
+- 다른 git client를 이용해서 로컬에 다운로드 받은 뒤 해당 repository를 import 하는 방법
+- 해당 사이트에서 zip을 다운로드 받아 이클립스에 import 하는 방법
+
+해당 프로젝트가 로컬에 import되면, 다음과 같은 사항들을 확인합니다.
+- 해당 프로젝트 명에서 오른쪽 마우스 클릭 > Properties에서 Project facet의 정보 중 Java와 Dynamic web module이 선택되어 있는지 확인
+- Maven 프로젝트인지 확인하여 안되어 있을 경우 Configure > Convert to Maven Project를 선택하여 Maven Project로 변경
+
+이상이 완료되면, 한 번 실행하여 실행여부를 확인합니다. "Run as" > "Maven Clean" 후 "Maven Install" 을 선택하여 패키징을 수행합니다. 초기 수행시 Maven depedency에 의해 관련된 라이브러리를 다운로드 하는 데 시간이 좀 걸리며, 이후 target 디렉토리에 petclinic.war 가 생기면 성공적으로 완료된 것입니다.
 
 
 
 ### 5) Deploy 및 통합테스트
 
+위에서 준비한 petclinic.war를 VM으로 옮깁니다. 2)에서 설치한 apache tomcat의 하위 디렉토리 중 webapps 하위 디렉토리에 가져다 놓은 뒤 tomcat을 재기동하면 자동으로 web application이 압축이 풀리며 시작됩니다.
+
+웹 어플리케이션이 성공적으로 시작되었으면 브라우저를 통해 확인합니다.
+
+이후 web, db와 연동하기 위해 다음과 같이 수행합니다.
+
+(작성중입니다.)
 
