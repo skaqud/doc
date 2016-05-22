@@ -1,6 +1,6 @@
 # 개요 
 
-다음과 같은 환경에서 linux(CentOS) 기반으로 WEB-WAS-DB를 구성하고 Sample application deploy 하여 테스트합니다.
+다음과 같은 환경에서 로컬에 생성된 linux(CentOS) 가상환경(VM)을 기반으로 WEB-WAS-DB를 구성하고 Sample application 을 deploy 하여 테스트합니다.
 
 세부 테스트환경
 
@@ -34,13 +34,15 @@
 
 참고 : http://firstboos.tistory.com/entry/CentOS-7-에서-mariadb-설치
 
-위 블로그 내용을 참고해서 기본 패키지관리자를 통해 설치
+위 블로그 내용을 참고해서 기본 패키지관리자(yum)를 통해 설치합니다.
 
-yum install mariadb
+	yum install mariadb
 
-블로그 내용대로 characterset 설정을 한 뒤 서비스를 시작
+블로그 내용대로 characterset 설정(utf-8)을 한 뒤 서비스를 시작
 
-service mariadb start
+	service mariadb start
+	#혹은 다음과 같이 실행
+	#systemctl mariadb start
 
 root 비번을 적당히 설정한 뒤 DB상태를 확인합니다.
 
