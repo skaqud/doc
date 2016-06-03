@@ -30,13 +30,15 @@
 	#비번 설정
 	passwd testu 
 
+이후 WAS, DB의 기본적인 작업은 위의 계정으로 실행합니다.
+
 ### 1) DB 설치
 
 참고 : http://firstboos.tistory.com/entry/CentOS-7-에서-mariadb-설치
 
 위 블로그 내용을 참고해서 기본 패키지관리자(yum)를 통해 설치합니다.
 
-	yum install mariadb
+	yum install mariadb-server
 
 블로그 내용대로 characterset 설정(utf-8)을 한 뒤 서비스를 시작
 
@@ -150,5 +152,49 @@ import 방법에는 여러가지가 있습니다.
 
 이후 web, db와 연동하기 위해 다음과 같이 수행합니다.
 
-(작성중입니다.)
+WEB-WAS 연동은 nginx 설정을 수정하여 사용자가 nginx 의 80포트를 호출하면 WAS의 서비스포트로 연결해주는 역할이며, 이는 nginx를 reverse proxy로 사용하는 방식입니다
+
+다음 nginx 설정을 열어
+
+	vi /etc/nginx/conf.d/default.conf
+	#add thid configuration
+    location /petclinic/ {
+        proxy_pass http://localhost:8080/;
+    }
+  
+위의 내용을 맨 server 영역 안쪽부분에 추가합니다. 이후로는 밖으로 8080이 열려 있지 않아도 해당 서비스(petclinic)에 대하여 80포트를 통해 서비스할 수 있습니다.(서비스 재기동 필요)
+
+DB의 경우 WAS에 설정된 DB 정보를 위의 3) 에서 설치된 DB 정보로 변경해 주어야 합니다.
+
+설정파일을 찾기 위해 해당 어플리케이션이 설치된 위치로 갑니다.
+
+4번 과정을 수행해서 생성된 petclinic.war를 2번에서 설치한 ~/app/tomcat경로/webapps 하위에 복사합니다.
+현재 tomcat이 구동중이라면 자동으로 war를 인식하여 압축을 풀면서 자동으로 어플리케이션을 올립니다.
+DB 정보를 수정하기 위해서 압축이 풀린 디렉토리를 탐색하여 정보를 수정합니다.
+
+다음 경로 하위의
+/home/testu/app/apache-tomcat-8.0.35/webapps/petclinic/WEB-INF/classes/spring
+data-access.properties 파일의 내용을 열면 HSQL과 MySQL 부분에 대한 설정이 보입니다. 현재 열려 있는 HSQL부분을 주석처리 한 뒤 MySQL부분의 주석을 해제한뒤 아래 내용처럼 입력해줍니다.
+
+    # MySQL Settings
+	jdbc.driverClassName=com.mysql.jdbc.Driver
+	jdbc.url=jdbc:mysql://localhost:3306/petclinic?useUnicode=true&characterEncoding=UTF-8
+	jdbc.username=petclinic
+	jdbc.password=petclinic
+
+    # Property that determines which database to use with an AbstractJpaVendorAdapter
+	jpa.database=MYSQL							
+
+끝으로 위에서 입력한 정보대로 DB, 계정을 생성해줍니다. 
+
+	CREATE DATABASE petclinic DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci; 
+	create user 'petclinic'@'%' identified by 'petclinic';
+	create user 'petclinic'@'localhost' identified by 'petclinic';
+	grant all privileges on petclinic.* to 'petclinic'@'%';
+
+접속을 테스트 해 본 뒤 기능이 제대로 동작하는 지 확인합니다.
+
+수정 후 tomcat을 재시작하여 이상없이 데이터가 나오는지 확인합니다.
+
+최종적으로 80 포트를 통해 서비스를 확인하면 web - was - db 연동이 제대로 된 것이라고 할 수 있습니다.
 
