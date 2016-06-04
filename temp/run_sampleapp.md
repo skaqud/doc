@@ -14,12 +14,12 @@ Spring 기반의 J2EE 서비스의 구성에 대해 설명하고 실제 그 Samp
 
 * 참고 - http://addio3305.tistory.com/39 의 프로젝트의 구조 그림 참고
 
--/src/main/java
--/src/main/resources
--/src/test/java
--/src/test/resources
--/src/main/webapps
--/target
+    /src/main/java
+    /src/main/resources
+    /src/test/java
+        /src/test/resources
+    /src/main/webapps
+    /target
 
 ###web.xml(/src/main/webapps)
 
