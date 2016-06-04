@@ -8,7 +8,7 @@
 - WEB : nginx(yum repository 버전)
 - WAS : apache-tomcat 7.x,(openjdk 1.8)
 - DB - mariadb
-- WebApp : spring-petclinic(https://github.com/spring-projects/spring-petclinic) 혹은 spring-webapp-template(https://github.com/making/spring-webapp-template)
+- WebApp : spring-petclinic(https://github.com/spring-projects/spring-petclinic)
 
 
 
