@@ -14,16 +14,16 @@ Spring 기반의 J2EE 서비스의 구성에 대해 설명하고 실제 그 Samp
 
 * 참고 - http://addio3305.tistory.com/39 의 프로젝트의 구조 그림 참고
 
-    /src/main/java
-    /src/main/resources
-    /src/test/java
-    /src/test/resources
-    /src/main/webapps
-    /target
+- /src/main/java
+- /src/main/resources
+- /src/test/java
+- /src/test/resources
+- /src/main/webapps
+- /target
 
 일반적으로 위와 같이 고정된 경로를 사용하며, 프로젝트 구동시 해당 디렉토리가 없을 경우 오류가 발생하기도 합니다. 
 
-###web.xml(/src/main/webapps)
+###웹 어플리케이션 설정파일(web.xml,/src/main/webapps)
 
 웹 어플리케이션의 설정을 가지고 있는 파일입니다. 웹 어플리케이션 구동의 시작점이라고 생각하면 될 것 같습니다.
 dispacher서블릿 설정과 서블릿 설정파일(관련 뷰 설정, 에러페이지 설정, 템플릿 설정 등)
@@ -46,7 +46,7 @@ dispacher서블릿 설정과 서블릿 설정파일(관련 뷰 설정, 에러페
         </param-value>
     </context-param>
 
-    Dispatcher 서블릿 설정 
+    <!-- Dispatcher 서블릿 설정 --> 
     <servlet>
         <servlet-name>appServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -84,7 +84,7 @@ dispacher서블릿 설정과 서블릿 설정파일(관련 뷰 설정, 에러페
     </error-page>
 
 
-###spring config file(/src/main/resources)
+###spring 설정파일(/src/main/resources)
 
 프로젝트에서 사용하는 모든 스프링 설정 파일들이 들어있으며, 용도에 따라 -datasource, transaction, security 등을 붙여 씁니다. spring 버전이 향상됨에 따라 될 수 있으면 설정에 들어가는 내용을 줄이고, 소스에 annotation 형태로 들어가는 형태로 많이 사용합니다. 설정은 너무 많으면 복잡해지고, 너무 적을 경우 각각의 소스를 직접 보지 않으면 전체적인 형태를 파악하기 힘든, 각각 장 단점을 가지고 있습니다. 어플리케이션의 용도에 따라 해당 파일이 있을 수도, 없을 수도 있습니다.
 
@@ -128,9 +128,9 @@ dispacher서블릿 설정과 서블릿 설정파일(관련 뷰 설정, 에러페
     </bean>
 
 
-###controller,service,model(/src/main/java)
+###어플리케이션 소스(Controller,Service,Model,/src/main/java)
 
-일반적으로 controller - Service(ServiceImpl) - Model(DAO-model) 형태로 구성하여 사용합니다.
+일반적으로 controller - Service(ServiceImpl) - Model(DAO-VO) 형태로 구성하여 사용합니다.
 
     //UserSearchController.java 
     @RequestMapping("list")
@@ -153,9 +153,9 @@ dispacher서블릿 설정과 서블릿 설정파일(관련 뷰 설정, 에러페
 }
 
 
-###빌드 도구 maven(/pom.xml)
+###빌드 도구(Maven,/pom.xml)
 
-프로젝트의 라이브러리 목록을 관리하고 프로젝트를 빌드하며 테스트하는 설정을 가지고 있습니다. 이전 빌드툴 도구인 Ant에 이어 가장 많이 사용되며 현재는 Gradle과 함께 쓰이고 있습니다. 기본적으로 프로젝트의 / 경로 바로 하위의 pom.xml 파일에 기록되며, 다음과 같은 내용들을 가지고 있습니다.
+프로젝트의 라이브러리 목록을 관리하고 프로젝트를 빌드하며 테스트하는 설정을 가지고 있습니다. 이전 빌드 도구인 Ant에 이어 가장 많이 사용되며 현재는 그 이후에 나온 Gradle과 함께 쓰이고 있습니다. 기본적으로 프로젝트의 / 경로 바로 하위의 pom.xml 파일에 기록되며, 다음과 같은 내용들을 가지고 있습니다.
 
     <!-- 프로젝트 정보 설정 - name, version -->
     <modelVersion>4.0.0</modelVersion>
