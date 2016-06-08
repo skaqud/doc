@@ -46,7 +46,7 @@
 	#혹은 다음과 같이 실행
 	#systemctl mariadb start
 
-root 비번을 적당히 설정한 뒤 DB상태를 확인합니다.
+root 비번을 적당히 설정한 뒤 DB상태를 확인합니다.(root 비번을 까먹지 않도록 주의합니다.)
 
 위에서 생성한 계정(testu)로도 로그인 되는지 확인합니다.
 
@@ -142,6 +142,30 @@ import 방법에는 여러가지가 있습니다.
 
 이상이 완료되면, 한 번 실행하여 실행여부를 확인합니다. "Run as" > "Maven Clean" 후 "Maven Install" 을 선택하여 패키징을 수행합니다. 초기 수행시 Maven depedency에 의해 관련된 라이브러리를 다운로드 하는 데 시간이 좀 걸리며, 이후 target 디렉토리에 petclinic.war 가 생기면 성공적으로 완료된 것입니다.
 
+단 원래 버전은 HSQL 기반이므로, data-access.properties 파일의 DB설정부분을 MySQL 용으로 변경하고 pom.xml 파일의 다음 부분의 압축을 푼 뒤 다시 패키징을 수행하여 정상적으로 Mariadb로 연결될 수 있는 바이너리를 생성합니다.
+
+        <!-- 다음 부분의 주석 해제(원래 주석처리 되어 있음) -->
+        <!-- For MySql only -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-driver.version}</version>
+        </dependency>
+
+Maven Install 시 테스트를 skip하기 위해서 pom.xml 파일의 다음부분에 skipTest태그를 넣습니다.(그렇지 않을 경우 로컬에서 테스트Case 오류가 발생)
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                	<!-- 아래 내용을 추가  -->
+                    <skipTests>true</skipTests>
+                    <includes>
+                        <include>**/*Tests.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
 
 
 ### 5) Deploy 및 통합테스트
@@ -157,9 +181,10 @@ WEB-WAS 연동은 nginx 설정을 수정하여 사용자가 nginx 의 80포트�
 다음 nginx 설정을 열어
 
 	vi /etc/nginx/conf.d/default.conf
+	
 	#add thid configuration
     location /petclinic/ {
-        proxy_pass http://localhost:8080/;
+        proxy_pass http://localhost:8080/petclinic/;
     }
   
 위의 내용을 맨 server 영역 안쪽부분에 추가합니다. 이후로는 밖으로 8080이 열려 있지 않아도 해당 서비스(petclinic)에 대하여 80포트를 통해 서비스할 수 있습니다.(서비스 재기동 필요)
@@ -191,6 +216,7 @@ data-access.properties 파일의 내용을 열면 HSQL과 MySQL 부분에 대한
 	create user 'petclinic'@'%' identified by 'petclinic';
 	create user 'petclinic'@'localhost' identified by 'petclinic';
 	grant all privileges on petclinic.* to 'petclinic'@'%';
+	grant all privileges on petclinic.* to 'petclinic'@'localhost';
 
 접속을 테스트 해 본 뒤 기능이 제대로 동작하는 지 확인합니다.
 
