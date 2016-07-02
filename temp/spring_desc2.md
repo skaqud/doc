@@ -10,17 +10,25 @@ ORM(Object Relational Mapping)이란 RDB 테이블을 객체지향적으로 변�
 공식 홈 - http://www.mybatis.org/mybatis-3/ko/
 
 참고 
-+ 시작하기 - http://www.mybatis.org/mybatis-3/ko/getting-started.html
-+ ORM의 장점과 단점 - http://layered.tistory.com/entry/ORM%EC%9D%80-%EC%95%88%ED%8B%B0%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%8B%A4-ORM-is-an-antipattern
+
+    시작하기 - http://www.mybatis.org/mybatis-3/ko/getting-started.html
+    ORM의 장점과 단점 - http://layered.tistory.com/entry/ORM%EC%9D%80-%EC%95%88%ED%8B%B0%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%8B%A4-ORM-is-an-antipattern
+    example1 - http://addio3305.tistory.com/62
+    example2 - http://jjeong.tistory.com/606
 
 
 ## Hibernate ##
 위에서 설명한 JPA구현체 중 하나, MyBatis의 경우 쿼리가 특정 위치에 들어있어, 쿼리 자체를 수정하거나 변경해야 할 필요가 있으나, Hibernate의 경우 그런 작업들이 모두 자바 코드로 이루어짐. 다만, 여러가지 이유(기술 숙성도, 개발자 차이 등)에 따라 Hibernate보다 MyBatis 등이 더 선호되기도 합니다.
 
+참고
+    
+    http://jjeong.tistory.com/614
+
+
 
 ** JPA(Java Persistence API)
 
-"JPA는 여러 ORM 전문가가 참여한 EJB 3.0 스펙 작업에서 기존 EJB ORM이던 Entity Bean을 JPA라고 바꾸고 JavaSE, JavaEE를 위한 영속성(persistence) 관리와 ORM을 위한 표준 기술입니다.. JPA는 ORM 표준 기술로 Hibernate, OpenJPA, EclipseLink, TopLink Essentials과 같은 구현체가 있고 이에 표준 인터페이스가 바로 JPA입니다."(From http://blog.woniper.net/255)
+"JPA는 여러 ORM 전문가가 참여한 EJB 3.0 스펙 작업에서 기존 EJB ORM이던 Entity Bean을 JPA라고 바꾸고 JavaSE, JavaEE를 위한 영속성(persistence) 관리와 ORM을 위한 표준 기술입니다. JPA는 ORM 표준 기술로 Hibernate, OpenJPA, EclipseLink, TopLink Essentials과 같은 구현체가 있고 이에 표준 인터페이스가 바로 JPA입니다."(From http://blog.woniper.net/255)
 
 ** Connection Pool
 
@@ -37,7 +45,7 @@ DBCP, c3p0, Proxool, BoneCP, TOMCAT JDBC CONNECTION POOL
     * http://d2.naver.com/helloworld/5102792
 
 
-### Spring에서 Session을 처리하는 방법 ###
+# Spring에서 Session을 처리하는 방법 #
 
 ## 1. Spring AOP를 이용한 Interceptor처리 ##
 
@@ -59,4 +67,7 @@ Spring에서 AOP란 공통적으로 발생하는 인증, 권한, 로깅, 트랜�
 
 Spring Project에서 만들어 놓은 인증과 인가를 전담하는 라이브러리, 혹은 프레임워크. 사용자와 권한 등 Domain 관련 정보들이 고정되어야 하는 위험 때문에 기존시스템을 변경하는 형태로 접근하기 힘드나, 별도로 AOP를 사용하여 구성하는 방법 보다는 좀 더 제어하기 쉽고 안전하다고 생각됩니다. 
 
+참고
+
+    http://www.javaproject.kr/Document/View/1761/[Spring-강좌]-8회---spring-security-이용한-로그인-인증-권한-처리-%3E
 
