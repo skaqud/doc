@@ -5,7 +5,7 @@ ORM(Object Relational Mapping)이란 RDB 테이블을 객체지향적으로 변�
 
 ## MyBatis ##
 
-개발자가 지정한 SQL, 저장 프로시저 및 몇가지 고급 매핑을 지원하는 퍼시스턴트 프레임워크, ORM이라고 본격적으로 보기에는 무리가 있다는 의견도 있다. JDBC로 처리하는 코드와 파라미터의 설정 및 결과 매핑을 대신해주어 DB연결부분을 독립적으로 사용할 수 있도록 해 준다. 
+개발자가 지정한 SQL, 저장 프로시저 및 몇가지 고급 매핑을 지원하는 퍼시스턴트 프레임워크, ORM이라고 본격적으로 보기에는 무리가 있다는 의견도 있습니다. JDBC로 처리하는 코드와 파라미터의 설정 및 결과 매핑을 대신해주어 DB연결부분을 독립적으로 사용할 수 있도록 해 줍니다. 
 
 - [MyBatis 공식 홈](http://www.mybatis.org/mybatis-3/ko/)
 - [addio3305님의 블로그:스프링개발-MyBatis연동하기](http://addio3305.tistory.com/62)
@@ -23,12 +23,12 @@ ORM(Object Relational Mapping)이란 RDB 테이블을 객체지향적으로 변�
 
 ### Connection Pool
 
-WAS에서 DB로 연결을 생성할 때, 요청이 들어와서 생성하기보다는 미리 생성된 Pool안에서 꺼내와서 성능을 개선하고, 자원을 효율적으로 사용하기 위한 아키텍처
+WAS에서 DB로 연결을 생성할 때, 요청이 들어와서 생성하기보다는 미리 생성된 Pool안에서 꺼내와서 성능을 개선하고, 자원을 효율적으로 사용하기 위한 기술입니다.
 
 Connection Pool의 종류
 
 DBCP, c3p0, Proxool, BoneCP, TOMCAT JDBC CONNECTION POOL
-위와 같이 다양한 종류의 Connection Pool들이 사용되나 일반적으로 WAS 벤더 혹은 오픈소스 쪽에서 제공하는 Pool을 쓰는 게 가장 좋음.
+위와 같이 다양한 종류의 Connection Pool들이 사용되나 일반적으로 WAS 벤더 혹은 오픈소스 쪽에서 제공하는 Pool을 쓰는 게 가장 좋습니다.
 
 - [ChakanBlog-ConnectionPool](http://blog.chakannom.com/2015/12/connection-pool.html)
 - [NHN개발자블로그-CommonsDBCP이해하기](http://d2.naver.com/helloworld/5102792)
