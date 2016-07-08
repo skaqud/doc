@@ -34,6 +34,7 @@ DBCP, c3p0, Proxool, BoneCP, TOMCAT JDBC CONNECTION POOL
 - [NHN개발자블로그-CommonsDBCP이해하기](http://d2.naver.com/helloworld/5102792)
 
 
+
 # Spring에서 Session을 처리하는 방법 #
 
 ## 1. Spring AOP를 이용한 Interceptor처리 ##
@@ -43,8 +44,7 @@ DBCP, c3p0, Proxool, BoneCP, TOMCAT JDBC CONNECTION POOL
 - [addio3305님의 블로그:스프링개발-로그 및 인터셉터 설정](http://addio3305.tistory.com/43)
 - [미니의 프로그래밍 이야기-스프링에서 Session기반 로그인 처리하기](http://blog.acronym.co.kr/590)
 
-
-** AOP란? 관점지향 프로그래밍(Aspect Oriented Programming)
+### AOP란? 관점지향 프로그래밍(Aspect Oriented Programming)
 
 "관점 지향 프로그래밍(Aspect-Oriented Programming, AOP)은 컴퓨팅에서 메인 프로그램의 비즈니스 로직으로부터 2차적 또는 보조 기능들을 고립시키는 프로그램 패러다임이다. 이것은 횡단관심사의 분리를 허용하고, 관점 지향 소프트웨어 개발의 기초를 형성하여 모듈화를 증가시키려 한다. 관점 지향 소프트웨어 개발이 모든 엔지니어링 분야에 관련되는 반면에, 관점 지향 프로그래밍은 소스코드 레벨에서 관심사들의 모듈화를 지원하는 프로그래밍 기술과 툴들을 포함한다."(From 위키백과)
 
